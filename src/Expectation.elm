@@ -20,10 +20,10 @@ module Expectation exposing (Expectation, eql, isTrue, isFalse)
 
  Usually there should be no need to define custom expectations as helper methods can be used `eql`, `isTrue`, `isFalse`
 -}
-type alias Expectation = {
-  errorMessage: String,
-  check: () -> Bool
-}
+type alias Expectation =
+  { errorMessage: String
+  , check: () -> Bool
+  }
 
 {-| Equality expectation. Verifies that the actual value is equal to the expected one.
 
@@ -38,7 +38,7 @@ type alias Expectation = {
 eql: a -> a -> Expectation
 eql expected actual =
   let
-    errorMessage = "Expected " ++ toString expected ++ " instead encountered " ++ toString actual
+    errorMessage = "Expected " ++ Debug.toString expected ++ " instead encountered " ++ Debug.toString actual
   in Expectation errorMessage (\() -> expected == actual)
 
 {-| Truth expectation. Verifies that the actual value is `True`.

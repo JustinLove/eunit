@@ -1,4 +1,4 @@
-module Test exposing (Test(Suite, Test), it, describe)
+module Test exposing (Test(..), it, describe)
 
 {-| This module provides means to define a test suite. Test suite is a tree formed from other test suites which
 has tests as its leafs. API is similar to that of Jasmine for JavaScript.

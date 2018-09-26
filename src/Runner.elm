@@ -70,17 +70,17 @@ run test =
       let
         hasPassed = expectation.check()
         testClass = if hasPassed then
-          "pass"
-        else
-          "fail"
+            "pass"
+          else
+            "fail"
         testStats = if hasPassed then
-          SuiteStats 1 0
-        else
-          SuiteStats 0 1
+            SuiteStats 1 0
+          else
+            SuiteStats 0 1
         testDetails = if hasPassed then
-          [text(description)]
-        else
-          [text(description), div [class "errorMessage"] [text(expectation.errorMessage)]]
+            [text(description)]
+          else
+            [text(description), div [class "errorMessage"] [text(expectation.errorMessage)]]
         testReport = (div [class testClass] testDetails)
       in
         RunnerResult testStats testReport
@@ -110,18 +110,18 @@ runAll testSuite =
   let
     runnerResult = run testSuite
     suiteStats = runnerResult.suiteStats
-    statusString = String.join " " ["Passed: ", toString suiteStats.passed,
-                                  "Failed: ", toString suiteStats.failed]
+    statusString = String.join " " ["Passed: ", Debug.toString suiteStats.passed,
+                                  "Failed: ", Debug.toString suiteStats.failed]
     testReportTitle = if suiteStats.failed > 0 then
-      h3 [class "fail"] [text("Tests failed!")]
-    else
-      h3 [] [text("All tests passed")]
+        h3 [class "fail"] [text("Tests failed!")]
+      else
+        h3 [] [text("All tests passed")]
     htmlReport = runnerResult.report
     suiteSummary = Json.Encode.object [
-      ("passed", int suiteStats.passed)
-      , ("failed", int suiteStats.failed)
-      , ("description", string (getDescription testSuite) )
-    ]
+        ("passed", int suiteStats.passed)
+        , ("failed", int suiteStats.failed)
+        , ("description", string (getDescription testSuite) )
+      ]
     suiteSummaryJson = encode 0 suiteSummary
   in
     div []
