@@ -47,11 +47,17 @@ function launchPhantomJs() {
 }
 
 function runSuite() {
-  var elmReactor = spawn('elm-reactor', ['-p', '9908']);
+  var elmReactor = spawn('elm', ['reactor', '--port=9908']);
 
   elmReactor.on('error', function(err) {
-    logger.error('ERROR: Could not launch elm-reactor...'
-      + 'Please install Elm and make sure elm-reactor can be launched.');
+    logger.error('ERROR: Could not launch elm reactor...'
+      + 'Please install Elm and make sure elm reactor can be launched.');
+  });
+  elmReactor.stdout.on('data', function(data) {
+    console.log('elm reactor: ', data.toString())
+  });
+  elmReactor.stderr.on('data', function(data) {
+    console.log('elm reactor: ', data.toString())
   });
   launchPhantomJs();
 }
