@@ -3,7 +3,7 @@
     "name": "antivanov/eunit",
     "summary": "eunit - minimalistic unit testing for Elm",
     "license": "MIT",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "exposed-modules": [
         "Expectation",
         "Test",

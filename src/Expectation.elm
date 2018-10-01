@@ -29,16 +29,22 @@ type alias Expectation =
 
  Expecting that 3 == 3
 
-    eql 3 3
+    eql Debug.toString 3 3
 
  The following expectation can be constructed, but will fail verification
 
-    eql 2 3
+    eql Debug.toString 2 3
+
+  You may want alias this as
+
+    eql = Expectation.eql Debug.toString
+
+  to avoid passing toString every time
 -}
-eql: a -> a -> Expectation
-eql expected actual =
+eql: (a -> String) -> a -> a -> Expectation
+eql toString expected actual =
   let
-    errorMessage = "Expected " ++ Debug.toString expected ++ " instead encountered " ++ Debug.toString actual
+    errorMessage = "Expected " ++ toString expected ++ " instead encountered " ++ toString actual
   in Expectation errorMessage (\() -> expected == actual)
 
 {-| Truth expectation. Verifies that the actual value is `True`.

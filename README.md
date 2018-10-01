@@ -33,11 +33,13 @@ To generate a test example run `eunit init` in the root directory of an Elm proj
 Test example should be created in `test/Main.elm`
 
 ```elm
-import Expectation exposing (eql, isTrue)
+import Expectation exposing (isTrue)
 import Test exposing (it, describe, Test)
 import Runner exposing (runAll)
 
 import Html exposing (Html)
+
+eql = Expectation.eql Debug.toString
 
 all : Test
 all = describe "Arithmetic operations"

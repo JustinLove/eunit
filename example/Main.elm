@@ -1,8 +1,10 @@
-import Expectation exposing (eql, isTrue)
+import Expectation exposing (isTrue)
 import Test exposing (it, describe, Test)
 import Runner exposing (runAll)
 
 import Html exposing (Html)
+
+eql = Expectation.eql Debug.toString
 
 all : Test
 all = describe "Arithmetic operations"

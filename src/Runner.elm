@@ -110,8 +110,8 @@ runAll testSuite =
   let
     runnerResult = run testSuite
     suiteStats = runnerResult.suiteStats
-    statusString = String.join " " ["Passed: ", Debug.toString suiteStats.passed,
-                                  "Failed: ", Debug.toString suiteStats.failed]
+    statusString = String.join " " ["Passed: ", String.fromInt suiteStats.passed,
+                                  "Failed: ", String.fromInt suiteStats.failed]
     testReportTitle = if suiteStats.failed > 0 then
         h3 [class "fail"] [text("Tests failed!")]
       else
